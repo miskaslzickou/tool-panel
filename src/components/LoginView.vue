@@ -6,6 +6,15 @@ import {useSupabase} from '../utils/supabase.js';
 <template>
   <div class="login">
     <h1 style="color:hsla(160, 100%, 37%, 1);font-weight: 500;   text-shadow: 1px 2px 5px  rgba(0, 189, 47, 0.705);">Login</h1>
+    
+    <div id="email-field">
+      <i class="fa-solid fa-envelope"></i>
+      <input :type='text'
+        placeholder="Enter your email"
+         
+      /></div>
+    
+
     <div id="login-field" class="relative max-w-xs mt-2">
       <button
         @click="togglePasswordVisibility"
@@ -59,7 +68,7 @@ input {
   border: none;
   background-color: transparent;
     outline: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 input:focus,
 input:focus-visible {
@@ -128,20 +137,22 @@ i {
   background-color: hsla(160, 100%, 42%, 1);
   scale: 1.02;
 }
-#login-field {
+#login-field ,#email-field{
   display: flex;
   align-items: center;
   width: 70%;
   padding: 4px;
-   border: 1px solid var(--color-text);
+  border: 1px solid var(--color-text);
  
   border-radius: 0.6rem;
   
   
 }
-#login-field:focus-within{
+#login-field:focus-within,#email-field:focus-within {
    box-shadow: 1px 2px 15px  rgba(235, 235, 235, 0.384);
 }
+
+
  
 
 </style>
