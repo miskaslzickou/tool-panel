@@ -22,9 +22,21 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <RouterView />
 
+<footer> <a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Lock icons created by Pixel perfect - Flaticon</a></footer>
+
 </template>
 
 <style scoped>
+ footer {
+   
+    width: 100%;
+    
+    margin: 0;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+}
+
 
 header {
   line-height: 1.5;
@@ -88,5 +100,6 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
+
 </style>
  
