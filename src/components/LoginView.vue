@@ -1,3 +1,8 @@
+
+<script setup>
+import {useSupabase} from '../utils/supabase.js';
+</script>
+
 <template>
   <div class="login">
     <h1 style="color:hsla(160, 100%, 37%, 1);font-weight: 500;   text-shadow: 1px 2px 5px  rgba(0, 189, 47, 0.705);">Login</h1>
@@ -26,7 +31,12 @@
   
 </template>
 
+
+
+
+
 <script>
+
 export default {
   data() {
     return {
