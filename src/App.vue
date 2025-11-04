@@ -10,13 +10,12 @@ import HelloWorld from './components/HelloWorld.vue'
   <header>
    
 
-    <div class="wrapper">
-      <HelloWorld/>
-      
+    <div class="wrapper"> 
       <nav>
         <RouterLink to="/"> Home</RouterLink>
         <RouterLink to="/login"> Login</RouterLink>
       </nav>
+       <HelloWorld/>
     </div>
   </header>
 
@@ -40,7 +39,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  
 }
 
 .logo {

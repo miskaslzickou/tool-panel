@@ -5,7 +5,8 @@ import {useSupabase} from '../utils/supabase.js';
 
 <template>
   <div class="login">
-    <h1 style="color:hsla(160, 100%, 37%, 1);font-weight: 500;   text-shadow: 1px 2px 5px  rgba(0, 189, 47, 0.705);">Login</h1>
+    <h1 style="">Login</h1>
+    
     
     <div id="email-field">
       <i class="fa-solid fa-envelope"></i>
@@ -60,15 +61,24 @@ export default {
 };
 </script>
 <style>
+h1{
+  
+  color:hsla(160, 100%, 37%, 1);
+  font-weight: 500;
+  text-shadow: 1px 2px 5px  rgba(0, 189, 47, 0.705);
+  place-items: flex-start;
+  font-size: 3rem;
+  margin-top: 5%;
+  margin-bottom: 2.5%;
+}
 
 input {
- 
- 
   color: var(--color-text);
   border: none;
   background-color: transparent;
-    outline: none;
-  font-size: 1.1rem;
+  outline: none;
+  font-size: 1rem;
+  
 }
 input:focus,
 input:focus-visible {
@@ -91,6 +101,8 @@ button {
   border: none;
   cursor: pointer;
   padding: 0;
+
+
 }
 
 button:focus{
@@ -109,8 +121,10 @@ i {
   display: flex;
   flex-direction: column;
   
-  justify-content: center; 
+   justify-content: space-between;
   align-items: center;
+ 
+  
   gap: 1rem;
   margin-bottom: 1.5rem;
   border: 2px solid #ffffff52;
@@ -122,13 +136,13 @@ i {
 }
 .login-button {
   width: 70%;
-  padding: 0.5rem 0.75rem;
+  padding: 0.8rem;
  
   color: whitesmoke;
   border-radius: 0.6rem;
   background-color:  hsla(160, 100%, 37%, 1);
   box-shadow: 1px 2px 15px  rgba(0, 189, 47, 0.705);
-  font-size: 1rem;
+  font-size: 1.3rem;
   cursor: pointer;
   margin-bottom: 15px;
   font-weight: 600;
