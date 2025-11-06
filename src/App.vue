@@ -2,6 +2,15 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 
+import { useAuthStore } from '@/stores/auth';
+const authStore = useAuthStore();
+async function logoutUser() {
+  
+    authStore.signOut();
+  // Přesměrování na domovskou stránku nebo jinou stránku po odhlášení
+  window.location.href = '/login';
+}
+// Načtení instance Storu
 
 
 </script>
@@ -14,15 +23,20 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/"> Home</RouterLink>
         <RouterLink to="/login"> Login</RouterLink>
+       
+         
       </nav>
-       <HelloWorld/>
+       
+      <HelloWorld/>
+
     </div>
+        <button v-if="authStore.isLoggedIn" @click="logoutUser()" >Log off</button > 
+       
   </header>
 
   <RouterView />
 
 <footer> <a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Lock icons created by Pixel perfect - Flaticon</a></footer>
-
 </template>
 
 <style scoped>
@@ -35,7 +49,13 @@ import HelloWorld from './components/HelloWorld.vue'
     display: flex;
     flex-direction: column;
 }
-
+button{
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+button:hover{
+  color: var(--color-border);
+}
 
 header {
   line-height: 1.5;

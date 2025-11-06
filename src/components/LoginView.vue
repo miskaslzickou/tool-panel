@@ -1,17 +1,27 @@
 
 <script setup>
-import {useSupabase} from '../utils/supabase.js';
+
 import { ref } from 'vue';
-import { reactive, toRaw } from 'vue';
+import {  toRaw } from 'vue';
+import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
+// ...
+
+const authStore = useAuthStore();
+const router = useRouter();
+// ...
+
 const email = ref('');
 const password = ref('');
-function loginUser() {
-  const { supabase } = useSupabase();
-
-  console.log( supabase.auth.signInWithPassword({
-    email: toRaw(email.value),
-    password: toRaw(password.value),
-  }));
+async function loginUser() {
+ const { data, error } = await authStore.signIn(email.value, password.value);
+    
+    if (data.user) {
+        // Uživatel je přihlášen, přesměrování na chráněnou stránku
+        router.push('/dashboard'); 
+    } else {
+        // Zobrazit error
+    }
 }
 </script>
 
@@ -35,6 +45,7 @@ function loginUser() {
       >
         <template v-if="isPasswordHidden">
         <i class="fa-solid fa-eye-slash"></i>
+        
         </template>
         <template v-else>
           <i class="fa-solid fa-eye" ></i>
