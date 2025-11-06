@@ -1,6 +1,18 @@
 
 <script setup>
 import {useSupabase} from '../utils/supabase.js';
+import { ref } from 'vue';
+import { reactive, toRaw } from 'vue';
+const email = ref('');
+const password = ref('');
+function loginUser() {
+  const { supabase } = useSupabase();
+
+  console.log( supabase.auth.signInWithPassword({
+    email: toRaw(email.value),
+    password: toRaw(password.value),
+  }));
+}
 </script>
 
 <template>
@@ -11,7 +23,7 @@ import {useSupabase} from '../utils/supabase.js';
     <div id="email-field">
       <i class="fa-solid fa-envelope"></i>
       <input :type='text'
-        placeholder="Enter your email"
+        placeholder="Enter your email" v-model="email"
          
       /></div>
     
@@ -30,13 +42,13 @@ import {useSupabase} from '../utils/supabase.js';
       </button>
       <input
         :type="isPasswordHidden ? 'password' : 'text'"
-        placeholder="Enter your password"
+        placeholder="Enter your password" v-model="password"
          
       />
       
       
     </div>
-    <button class="login-button">Login</button>
+    <button class="login-button" @click="loginUser()">Login</button>
   </div>
   
 </template>
