@@ -16,13 +16,25 @@ const password = ref('');
 async function loginUser() {
  const { data, error } = await authStore.signIn(email.value, password.value);
     
-    if (data.user) {
+    if (data?.user) {
         // Uživatel je přihlášen, přesměrování na chráněnou stránku
         router.push('/dashboard'); 
     } else {
         // Zobrazit error
     }
 }
+
+
+
+     const isPasswordHidden = ref(true);
+    
+
+
+  function  togglePasswordVisibility() {
+      this.isPasswordHidden = !this.isPasswordHidden;
+    }
+  
+
 </script>
 
 <template>
@@ -32,7 +44,7 @@ async function loginUser() {
     
     <div id="email-field">
       <i class="fa-solid fa-envelope"></i>
-      <input :type='text'
+      <input type='text'
         placeholder="Enter your email" v-model="email"
          
       /></div>
@@ -68,21 +80,7 @@ async function loginUser() {
 
 
 
-<script>
 
-export default {
-  data() {
-    return {
-      isPasswordHidden: true
-    };
-  },
-  methods: {
-    togglePasswordVisibility() {
-      this.isPasswordHidden = !this.isPasswordHidden;
-    }
-  }
-};
-</script>
 <style>
 h1{
   
@@ -155,6 +153,7 @@ i {
   border-radius: 0.6rem;
   background-color: #ebe7e709;
 
+  
   
 }
 .login-button {

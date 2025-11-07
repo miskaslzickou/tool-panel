@@ -4,13 +4,19 @@ import { ref,computed } from 'vue';
 import { useSupabase } from '@/utils/supabase'; 
 
 // ZAVOLÁNÍ composable pro získání supabase klienta
-const { supabase } = useSupabase();
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null);
   const isLoggedIn = computed(() => !!user.value); // Reaktivní stav
+  const { supabase } = useSupabase();
 
   // Aktualizuje stav uživatele na základě Supabase session
+
+   const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    user.value = session?.user ?? null;
+  });
+
+
   async function loadUser() {
     const { data: { session } } = await supabase.auth.getSession();
     user.value = session ? session.user : null;
@@ -33,14 +39,14 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function signOut() {
     // 1. Zavolání metody odhlášení Supabase
-    const { error } = await supabase.auth.signOut();
+    await supabase.auth.signOut();
     
-    if (!error) {
+    
         // 2. Resetování lokálního stavu uživatele
         user.value = null;
         // 3. Můžete zde přidat logiku pro navigaci (např. přesměrování na /login)
-    }
-    return { error };
+    
+    
   }
 
   return { user, isLoggedIn, loadUser, setUser, signIn,signOut };
