@@ -39,7 +39,7 @@ async function loginUser() {
 
 <template>
   <div class="login">
-    <h1 style="">Login</h1>
+    <h1>Login</h1>
     
     
     <div id="email-field">
@@ -81,7 +81,7 @@ async function loginUser() {
 
 
 
-<style>
+<style scoped>
 h1{
   
   color:hsla(160, 100%, 37%, 1);
@@ -99,6 +99,7 @@ input {
   background-color: transparent;
   outline: none;
   font-size: 1rem;
+  width: 100%;
   
 }
 input:focus,
@@ -153,7 +154,7 @@ i {
   border-radius: 0.6rem;
   background-color: #ebe7e709;
 
-  
+  width: 40rem;
   
 }
 .login-button {
