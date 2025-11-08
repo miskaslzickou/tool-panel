@@ -9,7 +9,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/', 
       name: 'home',
       component: HomeView,
     },
@@ -26,7 +26,7 @@ const router = createRouter({
       children: [
         {
           path: 'home',
-          name: 'home',
+          name: 'home dashboard',
           component: DashboardView,
           meta: { requiresAuth: true },
         },
@@ -80,7 +80,7 @@ router.beforeEach(async (to, from, next) => {
     
   } else {
     // Jinak povolíme navigaci
-     console.log(authStore.isLoggedIn);
+   
     next();
   }
 });
