@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
-
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { onMounted } from 'vue';
 const authStore = useAuthStore();
 const router = useRouter();
@@ -19,14 +19,8 @@ async function logoutUser() {
 }
 
 
-onMounted(() => {
-  // 3. Provedení kontroly po načtení komponenty
-  if (authStore.isLoggedIn) {
-    // 4. Přesměrování na jinou cestu
-    router.push('/dashboard'); 
-    // Nebo: router.replace('/cilova-stranka'); pro nahrazení aktuální historie (uživatel se nemůže vrátit zpět)
-  }
-});
+
+ 
 
 
 
@@ -42,8 +36,12 @@ onMounted(() => {
 
     <main>
       <aside class="sidebar" v-if="authStore.isLoggedIn">
-        
-        <button @click="logoutUser()">Log off</button>
+        <RouterLink to="/dashboard/home"><font-awesome-icon icon="fa-solid fa-house" ></font-awesome-icon> Home</RouterLink>
+        <RouterLink to="/dashboard/crypto"><font-awesome-icon icon="fa-solid fa-bitcoin-sign" ></font-awesome-icon>Crypto</RouterLink>
+        <RouterLink to="/dashboard/car-checker"><font-awesome-icon icon="fa-solid fa-car" ></font-awesome-icon> Car Checker</RouterLink>
+        <router-link to="/dashboard/stocks"><font-awesome-icon icon="fa-solid fa-arrow-trend-up" ></font-awesome-icon> Stocks</router-link>
+        <RouterLink to="/dashboard/weather"><font-awesome-icon icon="fa-solid fa-cloud-sun" ></font-awesome-icon> Weather</RouterLink>
+        <button @click="logoutUser()">Log out <font-awesome-icon icon="fa-solid fa-right-from-bracket" /></button>
       </aside>
 
       <div class="main-content">
@@ -96,6 +94,7 @@ main {
 }
 
 .sidebar {
+
   width: 150px;
   padding: 1rem;
   background-color: var(--color-background-soft);
@@ -106,7 +105,9 @@ main {
   bottom: 0;
   flex-direction: column;
   display: flex;
-  justify-content: flex-end;
+  
+  justify-content: flex-start;
+  gap: 1rem;
   overflow-y: auto;
 }
 
@@ -159,16 +160,33 @@ nav {
  
 }
 
-nav a {
+nav a{
   color: var(--color-text);
   font-size: 1.5rem;
   text-decoration: none;
 }
 
-nav a.router-link-active {
+.sidebar a{
+  color: var(--color-text);
+  
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav a.router-link-active, .sidebar a.router-link-active {
   color: hsla(160, 100%, 37%, 1);
 }
 
+
+.sidebar a:first-of-type {
+  margin-top: 5rem;
+}
+.sidebar a:last-of-type {
+
+  margin-bottom: auto;
+}
 @media (max-width: 768px) {
   .sidebar {
     width: 100px;

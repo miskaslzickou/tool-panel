@@ -1,4 +1,5 @@
 <script setup>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 const props = defineProps({
   vin: {
     type: String, // Očekáváme string
@@ -28,11 +29,16 @@ const props = defineProps({
 });
 
 
+
+
+
+
+
 </script>
 <template>
   <div class="car-card">
     <header> <h2>Car Information</h2>
-    <button class="delete-button">Delete</button></header>
+    <button class="delete-button" @click="deleteCar"><font-awesome-icon icon="fa-solid fa-trash" /> Delete</button></header>
    
     <p><strong>VIN:</strong> {{ vin }}</p>
     <p><strong>Number Plate:</strong> {{ numberPlate }}</p>
@@ -62,16 +68,33 @@ const props = defineProps({
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .delete-button {
-  background-color: var(--color-border);
-  color: var(--color-background);
+  color:#f07575;
+  background-color: transparent;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   float: right;
 } 
+.delete-button:hover {
+  background-color: #f0020252;
+}
+h2{
+  
+  
+  font-weight: 500;
+  text-shadow: 1px 2px 8px  var(--color-text);
+  place-items: flex-start;
+  
+
+  
+}
 
 
 </style>

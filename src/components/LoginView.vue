@@ -5,7 +5,7 @@ import { ref } from 'vue';
 import {  toRaw } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
-// ...
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -18,7 +18,7 @@ async function loginUser() {
     
     if (data?.user) {
         // Uživatel je přihlášen, přesměrování na chráněnou stránku
-        router.push('/dashboard'); 
+        router.push('/dashboard/home'); 
     } else {
         // Zobrazit error
     }
@@ -43,7 +43,7 @@ async function loginUser() {
     
     
     <div id="email-field">
-      <i class="fa-solid fa-envelope"></i>
+      <font-awesome-icon icon="fa-solid fa-envelope" size="2x" />
       <input type='text'
         placeholder="Enter your email" v-model="email"
          
@@ -51,16 +51,16 @@ async function loginUser() {
     
 
     <div id="login-field" class="relative max-w-xs mt-2">
-      <button
-        @click="togglePasswordVisibility"
+      <button id="toggle-password"
+        @click="togglePasswordVisibility()"
         class="text-gray-400 absolute right-3 inset-y-0 my-auto active:text-gray-600"
       >
         <template v-if="isPasswordHidden">
-        <i class="fa-solid fa-eye-slash"></i>
+          <font-awesome-icon icon="fa-solid fa-eye-slash" size="2x" />
         
         </template>
         <template v-else>
-          <i class="fa-solid fa-eye" ></i>
+         <font-awesome-icon icon="fa-solid fa-eye" size="2x"/>
         </template>
       </button>
       <input
@@ -92,7 +92,9 @@ h1{
   margin-top: 5%;
   margin-bottom: 2.5%;
 }
-
+#toggle-password {
+color: var(--color-text-);
+}
 input {
   color: var(--color-text);
   border: none;
@@ -131,13 +133,7 @@ button:focus{
   outline: none;
   border: none;
 }
-i {
-  font-size: 1.45rem;
-  width: 35px;
-  color: var(--color-text);
 
-  margin: 5px;
-}
 
 .login {
   display: flex;
@@ -155,7 +151,7 @@ i {
   background-color: #ebe7e709;
 
   width: 40rem;
-  
+  color: var(--color-text);
 }
 .login-button {
   width: 70%;
